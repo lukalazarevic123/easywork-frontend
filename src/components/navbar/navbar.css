@@ -1,0 +1,75 @@
+.navbar-wrapper {
+    display: flex;
+    align-items: center;
+
+    padding-left: 10%;
+    padding-right: 10%;
+
+    height: 4.5rem;
+
+    background-color: black;
+
+    justify-content: space-between;
+}
+
+.brand-img {
+    width: 100px;
+    height: 100px;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.brand-name {
+    color: white;
+    font-size: 25px;
+    font-weight: 700;
+
+    font-family: 'Roboto', sans-serif;
+}
+
+.links-list {
+    display: flex;
+    align-items: center;
+
+    margin-left: 25px;
+}
+
+.link-item {
+    font-family: 'Roboto', sans-serif;
+    color: lightgrey;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 20px;
+}
+
+.link-item:hover {
+    color: black;
+    transition: color 400ms ease;
+    transition: background-color 400ms ease;
+    background-color: rgb(255, 255, 255, 0.5);
+}
+
+.d-flex {
+    display: flex;
+}
+
+.wallet-button {
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+
+    background-color: grey;
+    padding: 10px;
+
+    border-radius: 15px;
+
+    cursor: pointer;
+}
