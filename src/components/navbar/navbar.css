@@ -77,6 +77,9 @@
     border-radius: 15px;
 
     cursor: pointer;
+    width: 10rem;
+
+    text-align: center;
 }
 
 .user-avatar {
@@ -87,3 +90,4 @@
     height: 50px;
     cursor: pointer;
 }
+

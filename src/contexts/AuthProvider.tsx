@@ -4,7 +4,7 @@ export interface IAuthContext {
   walletUser: boolean;
   loggedIn: boolean;
   user: any;
-  connectWallet: () => Promise<void>;
+  connectWallet: () => Promise<boolean>;
 }
 
 export const AuthContext = createContext<IAuthContext>(null);
@@ -28,18 +28,23 @@ const AuthProvider = ({ children }) => {
   }, []);
 
   const connectWallet = async () => {
-    // @ts-ignore
-    const accs = await window.ethereum.request({ method: "eth_requestAccounts" });
-    console.log(accs);
-    if(accs.length === 0) {
+    try{
+      // @ts-ignore
+      const accs = await window.ethereum.request({ method: "eth_requestAccounts" });
+
+      if(accs.length === 0) {
         setWalletUser(false);
-        return;
+        return false;
+      }
+
+
+      //send request to the back so you get jwt in return.
+      setWallet(accs[0])
+      setLoggedIn(true);
+      return true;
+    }catch(e) {
+      return false;
     }
-
-
-    //send request to the back so you get jwt in return.
-    setWallet(accs[0])
-    setLoggedIn(true);
   };
 
   const value: IAuthContext = {
