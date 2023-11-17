@@ -5,6 +5,7 @@ import { HomePage } from "./pages/home-page/home-page";
 import { Navbar } from "./components/navbar/navbar";
 import AuthProvider from "./contexts/AuthProvider";
 import { LoginPage } from "./pages/login/login";
+import { RegisterPage } from "./pages/register/register";
 
 export const toastCss = {
   style: {
@@ -22,6 +23,7 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
           </Routes>
         </Router>
       </AuthProvider>
