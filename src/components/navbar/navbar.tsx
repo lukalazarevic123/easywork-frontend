@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthProvider";
 
+const defAvatar = "https://variety.com/wp-content/uploads/2021/04/Avatar.jpg";
+
 const links = [
   {
     name: "Home",
@@ -31,7 +33,6 @@ export const Navbar = () => {
   const navigate = useNavigate();
 
   const renderWalletAuthentication = () => {
-
     return (
         <div className="wallet-button" onClick={() => authContext.connectWallet()}>
             Connect Wallet
@@ -40,7 +41,6 @@ export const Navbar = () => {
   }
 
   const renderWeb2Authentication = () => {
-    console.log("hej")
     return (
         <div className="links-list">
             {authLinks.map((link, idx) => (
@@ -50,6 +50,22 @@ export const Navbar = () => {
             ))}
         </div>
     )
+  }
+
+  const renderAvatar = () => {
+    return (
+        <div>
+            <img className="user-avatar" src={authContext.user.avatar ?? defAvatar} />
+        </div>
+    )
+  }
+
+  const renderAuth = () => {
+    if(authContext.loggedIn){
+        return renderAvatar();
+    }
+
+    return authContext.walletUser ?  renderWalletAuthentication() : renderWeb2Authentication();
   }
 
   return (
@@ -72,11 +88,7 @@ export const Navbar = () => {
       </div>
 
       <div className="authentication">
-        {authContext.walletUser ? (
-            renderWalletAuthentication()
-        ): (
-            renderWeb2Authentication()
-        )}
+        {renderAuth()}
       </div>
     </div>
   );
