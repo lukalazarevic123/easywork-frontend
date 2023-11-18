@@ -2,12 +2,13 @@ import { useState } from "react";
 import "./jobs-list.css";
 import moment from "moment";
 
-const gigs = [
+export const gigs = [
   {
     beneficiary: "0x4E598B1c93C62aF988214455ae6A1f517cE854c1",
     freelancer: "0x4E598B1c93C62aF988214455ae6A1f517cE854c1",
     deadline: 1700277752329,
     price: 10 ** 18,
+    active: true,
     category: "Blockchain",
     title:
       "Full-Stack Adventure Awaits: Laravel, Inertia, PostgreSQL Magician Needed",
@@ -19,6 +20,7 @@ const gigs = [
     freelancer: "0x4E598B1c93C62aF988214455ae6A1f517cE854c1",
     deadline: 1700277752329,
     price: 10 ** 18,
+    active: false,
     category: "Machine learning",
     title:
       "Full-Stack Adventure Awaits: Laravel, Inertia, PostgreSQL Magician Needed",
@@ -30,6 +32,7 @@ const gigs = [
     freelancer: "0x4E598B1c93C62aF988214455ae6A1f517cE854c1",
     deadline: 1700277752329,
     price: 10 ** 18,
+    active: true,
     category: "Cryptocurrencies",
     title:
       "Full-Stack Adventure Awaits: Laravel, Inertia, PostgreSQL Magician Needed",
@@ -41,6 +44,7 @@ const gigs = [
     freelancer: "0x4E598B1c93C62aF988214455ae6A1f517cE854c1",
     deadline: 1700277752329,
     price: 10 ** 18,
+    active: false,
     category: "Blockchain",
     title:
       "Full-Stack Adventure Awaits: Laravel, Inertia, PostgreSQL Magician Needed",

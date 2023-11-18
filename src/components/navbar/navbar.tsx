@@ -11,12 +11,25 @@ const links = [
   {
     name: "Home",
     href: "/",
+    role: "ALL"
   },
   {
     name: "Find work",
     href: "/jobs",
+    role: "FREELANCER"
   },
+  {
+    name: "Posted jobs",
+    href: "/posted",
+    role: "ALL"
+  }
 ];
+
+interface LinkItem {
+  name: string;
+  href: string;
+  role: string;
+}
 
 const authLinks = [
   {
@@ -60,6 +73,14 @@ export const Navbar = () => {
     );
   };
 
+  const filterLinksByRole = (link: LinkItem) => {
+    if(link.role === authContext.type || link.role === "ALL") {
+      return true;
+    }
+
+    return false;
+  }
+
   const renderAvatar = () => {
     return (
       <div>
@@ -93,7 +114,7 @@ export const Navbar = () => {
         </div>
 
         <div className="links-list">
-          {links.map((link, idx) => (
+          {links.filter((link) => filterLinksByRole(link)).map((link, idx) => (
             <div
               className="link-item"
               key={idx}
@@ -102,9 +123,6 @@ export const Navbar = () => {
               {link.name}
             </div>
           ))}
-          <div className="link-item">
-            {authContext.type === "FREELANCER" ? "Applied jobs" : "Posted jobs"}
-          </div>
         </div>
       </div>
 

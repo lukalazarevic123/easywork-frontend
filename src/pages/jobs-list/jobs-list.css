@@ -39,7 +39,8 @@
 }
 
 .job-card {
-    margin: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     border: 1px solid lightgrey;
 
     padding: 20px;
@@ -47,7 +48,7 @@
 
     height: 10rem;
     width: 53vw;
-    height: 13rem;
+    height: 15rem;
     padding-bottom: 0px;
 }
 
