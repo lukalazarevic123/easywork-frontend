@@ -1,0 +1,144 @@
+.jobs-list-wrapper {
+    display: flex;
+    margin-top: 5rem;
+    margin-left: 10em;
+    margin-right: 10rem;
+}
+
+.jobs-filter {
+    background-color: beige;
+    width: 20vw;
+    padding: 20px;
+
+    height: 40vh;
+
+    border-radius: 9px;
+    margin-right: 5%;
+}
+
+.filter-title {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 800;
+    font-size: 23px;
+}
+
+.group-label {
+    margin-top: 15px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+}
+
+.type-select {
+    height: 3.5rem;
+    width: 20vw;
+}
+
+.jobs-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.job-card {
+    margin: 20px;
+    border: 1px solid lightgrey;
+
+    padding: 20px;
+    border-radius: 9px;
+
+    height: 10rem;
+    width: 53vw;
+    height: 13rem;
+    padding-bottom: 0px;
+}
+
+.job-title {
+    font-weight: 800;
+    font-family: 'Roboto', sans-serif;
+
+    font-size: 25px;
+}
+
+.job-description {
+    margin-top: 10px;
+    color: darkgrey;
+    font-weight: 600;
+
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.card-top{
+    display: flex;
+    justify-content: space-between;
+
+    align-items: center;
+}
+
+.apply-btn {
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+
+    background-color: green;
+    padding: 10px;
+
+    border-radius: 15px;
+
+    cursor: pointer;
+    width: 5rem;
+
+    text-align: center;
+}
+
+.tags-list {
+    display: flex;
+    align-items: center;
+
+    margin-top: 20px;
+}
+
+.job-tag {
+    padding: 10px;
+
+    background-color: beige;
+    border-radius: 9px;
+    font-family: 'Roboto', sans-serif;
+    margin-left: 10px;
+    height: 1.5rem;
+
+    font-weight: 600;
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}
+
+.title-search {
+    background-color: beige;
+    padding: 20px;
+    border-radius: 9px;
+    width: 55vw;
+}
+
+.input-wrapper {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.search-input {
+    border: 0px;
+    margin-left: 10px;
+}
+
+input.search-input:focus {
+    outline-width: 0;
+}
