@@ -13,6 +13,7 @@ export const PostedJobsPage = () => {
   const [addJobTitle, setAddJobTitle] = useState("");
   const [addJobDesc, setAddJobDesc] = useState("");
   const [addJobCat, setAddJobCat] = useState("");
+  const [addJobDead, setAddJobDead] = useState<number>(0);
 
   const toggleShowAddJob = () => {
     setShowAddJob((prevValue) => !prevValue);
@@ -48,7 +49,7 @@ export const PostedJobsPage = () => {
               />
             </div>
             <div className="add-job-group">
-              <div className="group-label">Job title</div>
+              <div className="group-label">Category</div>
               <select
                 className="login-input type-select"
                 onChange={(e) => setAddJobCat(e.target.value)}
@@ -59,11 +60,34 @@ export const PostedJobsPage = () => {
               </select>
             </div>
 
+            <div className="add-job-group-flex">
+              <div>
+                <div className="group-label">Deadline</div>
+                <input
+                  placeholder="Smart contract audit"
+                  className="add-job-input w-50"
+                  type="date"
+                  onChange={(e) => setAddJobTitle(e.target.value)}
+                />
+              </div>
+
+              <div style={{marginLeft: "20px"}}>
+                <div className="group-label">Price (ETH)</div>
+                <input
+                  placeholder="0.3"
+                  className="add-job-input w-50"
+                  type="number"
+                  onChange={(e) => setAddJobDead(Date.parse(e.target.value).valueOf)}
+                />
+              </div>
+            </div>
+
             <div className="add-job-group">
-              <div className="group-label">Job title</div>
+              <div className="group-label">Job description</div>
               <textarea
+                placeholder="Tell us more about the job..."
                 className="add-job-textarea"
-                onChange={(e) => setAddJobTitle(e.target.value)}
+                onChange={(e) => setAddJobDesc(e.target.value)}
               />
             </div>
           </div>
