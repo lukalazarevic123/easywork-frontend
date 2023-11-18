@@ -4,6 +4,7 @@ export interface IAuthContext {
   walletUser: boolean;
   loggedIn: boolean;
   user: any;
+  wallet: string;
   connectWallet: () => Promise<boolean>;
 }
 
@@ -51,6 +52,7 @@ const AuthProvider = ({ children }) => {
     walletUser,
     loggedIn,
     user,
+    wallet,
     connectWallet,
   };
 

@@ -11,9 +11,14 @@ export const RegisterPage = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [type, setType] = useState<string>("")
+  const [type, setType] = useState<string>("FREELANCER")
 
   const connectWallet = async () => {
+    if(password === "") {
+        toast.error("You must provide a password!", toastCss);
+        return;
+    }
+
     const resp = await authContext.connectWallet();
 
     if(!resp){
@@ -32,8 +37,9 @@ export const RegisterPage = () => {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        email,
-        password
+        password,
+        type,
+        chainAddress: authContext.wallet
       })
     })
 
