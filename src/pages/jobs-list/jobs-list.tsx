@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./jobs-list.css";
 import moment from "moment";
+import ethicon from "../../assets/eth.png";
 
 export const JobsListPage = () => {
   const [typeFilter, setTypeFilter] = useState("");
@@ -103,6 +104,7 @@ export const JobsListPage = () => {
                       <div style={{ marginLeft: "10px" }}>Funds staked</div>
                     </div>
                   </div>
+                  <div className="job-tag">{gig.price} <img src={ethicon} height="20px" width="20px" />  </div>
                 </div>
               </div>
             ))}

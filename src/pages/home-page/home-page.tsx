@@ -11,8 +11,8 @@ export const HomePage = () => {
     <>
       <ThemeProvider theme={lightTheme}>
       <ThorinGlobalStyles />
-      <Banner actionIcon={<FlameSVG />} iconType="normal" title="Empowering Work Relationships">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      <Banner  icon={<LogoSVG />} title="Empowering Work Relationships">
+        Ethereum Attestation Services for Verified Job Accomplishments
       </Banner>
       </ThemeProvider>
     </>
