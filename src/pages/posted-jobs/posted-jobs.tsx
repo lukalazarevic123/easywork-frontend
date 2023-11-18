@@ -2,10 +2,60 @@ import { useContext, useEffect, useState } from "react";
 import "./posted-jobs.css";
 import { AuthContext } from "../../contexts/AuthProvider";
 import { useNavigate } from "react-router-dom";
-import { gigs } from "../jobs-list/jobs-list";
 import moment from "moment";
 import toast from "react-hot-toast";
 import { toastCss } from "../../App";
+
+export const gigs = [
+  {
+    beneficiary: "0x4E598B1c93C62aF988214455ae6A1f517cE854c1",
+    freelancer: "0x4E598B1c93C62aF988214455ae6A1f517cE854c1",
+    deadline: 1700277752329,
+    price: 10 ** 18,
+    active: true,
+    category: "Blockchain",
+    title:
+      "Full-Stack Adventure Awaits: Laravel, Inertia, PostgreSQL Magician Needed",
+    description:
+      "We are seeking a a highly skilled and experienced Laravel and Inertia.js Expert to join our dynamic team. In this role, you will be responsible for developing, maintaining, and optimizing web applications using Laravel and Inertia.js. Your primary focus will be on back-end development, but proficiency in react technologies is a plus.",
+  },
+  {
+    beneficiary: "0x4E598B1c93C62aF988214455ae6A1f517cE854c1",
+    freelancer: "0x4E598B1c93C62aF988214455ae6A1f517cE854c1",
+    deadline: 1700277752329,
+    price: 10 ** 18,
+    active: false,
+    category: "Machine learning",
+    title:
+      "Full-Stack Adventure Awaits: Laravel, Inertia, PostgreSQL Magician Needed",
+    description:
+      "We are seeking a a highly skilled and experienced Laravel and Inertia.js Expert to join our dynamic team. In this role, you will be responsible for developing, maintaining, and optimizing web applications using Laravel and Inertia.js. Your primary focus will be on back-end development, but proficiency in react technologies is a plus.",
+  },
+  {
+    beneficiary: "0x4E598B1c93C62aF988214455ae6A1f517cE854c1",
+    freelancer: "0x4E598B1c93C62aF988214455ae6A1f517cE854c1",
+    deadline: 1700277752329,
+    price: 10 ** 18,
+    active: true,
+    category: "Cryptocurrencies",
+    title:
+      "Full-Stack Adventure Awaits: Laravel, Inertia, PostgreSQL Magician Needed",
+    description:
+      "We are seeking a a highly skilled and experienced Laravel and Inertia.js Expert to join our dynamic team. In this role, you will be responsible for developing, maintaining, and optimizing web applications using Laravel and Inertia.js. Your primary focus will be on back-end development, but proficiency in react technologies is a plus.",
+  },
+  {
+    beneficiary: "0x4E598B1c93C62aF988214455ae6A1f517cE854c1",
+    freelancer: "0x4E598B1c93C62aF988214455ae6A1f517cE854c1",
+    deadline: 1700277752329,
+    price: 10 ** 18,
+    active: false,
+    category: "Blockchain",
+    title:
+      "Full-Stack Adventure Awaits: Laravel, Inertia, PostgreSQL Magician Needed",
+    description:
+      "We are seeking a a highly skilled and experienced Laravel and Inertia.js Expert to join our dynamic team. In this role, you will be responsible for developing, maintaining, and optimizing web applications using Laravel and Inertia.js. Your primary focus will be on back-end development, but proficiency in react technologies is a plus.",
+  },
+];
 
 export const PostedJobsPage = () => {
   const authContext = useContext(AuthContext);

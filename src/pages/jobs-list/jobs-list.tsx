@@ -1,62 +1,23 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./jobs-list.css";
 import moment from "moment";
-
-export const gigs = [
-  {
-    beneficiary: "0x4E598B1c93C62aF988214455ae6A1f517cE854c1",
-    freelancer: "0x4E598B1c93C62aF988214455ae6A1f517cE854c1",
-    deadline: 1700277752329,
-    price: 10 ** 18,
-    active: true,
-    category: "Blockchain",
-    title:
-      "Full-Stack Adventure Awaits: Laravel, Inertia, PostgreSQL Magician Needed",
-    description:
-      "We are seeking a a highly skilled and experienced Laravel and Inertia.js Expert to join our dynamic team. In this role, you will be responsible for developing, maintaining, and optimizing web applications using Laravel and Inertia.js. Your primary focus will be on back-end development, but proficiency in react technologies is a plus.",
-  },
-  {
-    beneficiary: "0x4E598B1c93C62aF988214455ae6A1f517cE854c1",
-    freelancer: "0x4E598B1c93C62aF988214455ae6A1f517cE854c1",
-    deadline: 1700277752329,
-    price: 10 ** 18,
-    active: false,
-    category: "Machine learning",
-    title:
-      "Full-Stack Adventure Awaits: Laravel, Inertia, PostgreSQL Magician Needed",
-    description:
-      "We are seeking a a highly skilled and experienced Laravel and Inertia.js Expert to join our dynamic team. In this role, you will be responsible for developing, maintaining, and optimizing web applications using Laravel and Inertia.js. Your primary focus will be on back-end development, but proficiency in react technologies is a plus.",
-  },
-  {
-    beneficiary: "0x4E598B1c93C62aF988214455ae6A1f517cE854c1",
-    freelancer: "0x4E598B1c93C62aF988214455ae6A1f517cE854c1",
-    deadline: 1700277752329,
-    price: 10 ** 18,
-    active: true,
-    category: "Cryptocurrencies",
-    title:
-      "Full-Stack Adventure Awaits: Laravel, Inertia, PostgreSQL Magician Needed",
-    description:
-      "We are seeking a a highly skilled and experienced Laravel and Inertia.js Expert to join our dynamic team. In this role, you will be responsible for developing, maintaining, and optimizing web applications using Laravel and Inertia.js. Your primary focus will be on back-end development, but proficiency in react technologies is a plus.",
-  },
-  {
-    beneficiary: "0x4E598B1c93C62aF988214455ae6A1f517cE854c1",
-    freelancer: "0x4E598B1c93C62aF988214455ae6A1f517cE854c1",
-    deadline: 1700277752329,
-    price: 10 ** 18,
-    active: false,
-    category: "Blockchain",
-    title:
-      "Full-Stack Adventure Awaits: Laravel, Inertia, PostgreSQL Magician Needed",
-    description:
-      "We are seeking a a highly skilled and experienced Laravel and Inertia.js Expert to join our dynamic team. In this role, you will be responsible for developing, maintaining, and optimizing web applications using Laravel and Inertia.js. Your primary focus will be on back-end development, but proficiency in react technologies is a plus.",
-  },
-];
 
 export const JobsListPage = () => {
   const [typeFilter, setTypeFilter] = useState("");
   const [ratingFilter, setRatingFilter] = useState("");
   const [searchTitle, setSearchTitle] = useState("");
+  const [gigs, setGigs] = useState<any[]>([]);
+
+  useEffect(() => {
+    const fetchGigs = async () => {
+      const getGigs = await fetch(`${import.meta.env.VITE_BACKEND_URL}/job/all-jobs`);
+      const allGigs = await getGigs.json();
+
+      setGigs([...allGigs]);
+    }
+
+    fetchGigs();
+  }, [])
 
   const filterByType = (gig: any) => {
     if (typeFilter === "" || typeFilter.includes(gig.category)) {
