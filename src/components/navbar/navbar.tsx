@@ -21,7 +21,12 @@ const links = [
   {
     name: "Posted jobs",
     href: "/posted",
-    role: "ALL"
+    role: "CLIENT"
+  },
+  {
+    name: "My jobs",
+    href: "/posted",
+    role: "FREELANCER"
   }
 ];
 
@@ -81,9 +86,25 @@ export const Navbar = () => {
     return false;
   }
 
+  const openSnap =  async () => {
+    // @ts-ignore
+    await window.ethereum.request({
+      method: "wallet_requestSnaps",
+      params: {
+        "local:http://localhost:8080": {}
+      }
+    })
+
+    // @ts-ignore
+    const res = await window.ethereum.request({
+      method: "wallet_invokeSnap",
+      params: {snapId: "local:http://localhost:8080", request: { method: "hello" }}
+    });
+  }
+
   const renderAvatar = () => {
     return (
-      <div>
+      <div onClick={() => openSnap()}>
         <img
           className="user-avatar"
           src={defAvatar}

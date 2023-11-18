@@ -4,6 +4,8 @@ import { AuthContext } from "../../contexts/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import { gigs } from "../jobs-list/jobs-list";
 import moment from "moment";
+import toast from "react-hot-toast";
+import { toastCss } from "../../App";
 
 export const PostedJobsPage = () => {
   const authContext = useContext(AuthContext);
@@ -12,8 +14,36 @@ export const PostedJobsPage = () => {
   const [showAddJob, setShowAddJob] = useState(false);
   const [addJobTitle, setAddJobTitle] = useState("");
   const [addJobDesc, setAddJobDesc] = useState("");
-  const [addJobCat, setAddJobCat] = useState("");
+  const [addJobCat, setAddJobCat] = useState("Blockchain");
   const [addJobDead, setAddJobDead] = useState<number>(0);
+  const [addJobPrice, setAddJobPrice] = useState<number>(0)
+
+  const submitJob = async () => {
+    const wallet = await authContext.connectWallet();
+    const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/job/post`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        beneficiary: wallet,
+        deadline: addJobDead,
+        price: addJobPrice,
+        category: addJobCat,
+        title: addJobTitle,
+        description: addJobDesc,
+      })
+    })
+
+    const resData = await res.json();
+
+    if(resData.msg){
+      toast.error("Something went wrong posting the job", toastCss);
+      return;
+    }
+
+    toast.success("Success", toastCss);
+  }
 
   const toggleShowAddJob = () => {
     setShowAddJob((prevValue) => !prevValue);
@@ -67,7 +97,7 @@ export const PostedJobsPage = () => {
                   placeholder="Smart contract audit"
                   className="add-job-input w-50"
                   type="date"
-                  onChange={(e) => setAddJobTitle(e.target.value)}
+                  onChange={(e) => setAddJobDead(Date.parse(e.target.value).valueOf())}
                 />
               </div>
 
@@ -77,7 +107,7 @@ export const PostedJobsPage = () => {
                   placeholder="0.3"
                   className="add-job-input w-50"
                   type="number"
-                  onChange={(e) => setAddJobDead(Date.parse(e.target.value).valueOf)}
+                  onChange={(e) => setAddJobPrice(parseFloat(e.target.value))}
                 />
               </div>
             </div>
@@ -92,7 +122,7 @@ export const PostedJobsPage = () => {
             </div>
           </div>
 
-          <div className="submit-job-btn">Submit</div>
+          <div className="submit-job-btn" onClick={() => submitJob()}>Submit</div>
         </div>
       )}
       <div className="posted-jobs-list">
