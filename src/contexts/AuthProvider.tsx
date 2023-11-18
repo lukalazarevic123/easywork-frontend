@@ -50,7 +50,7 @@ const AuthProvider = ({ children }) => {
       }
 
       const decoded = jwtDecode(token);
-
+      console.log(decoded);
       // @ts-ignore
       setType(decoded.type);
       // @ts-ignore
