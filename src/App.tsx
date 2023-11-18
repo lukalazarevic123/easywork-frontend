@@ -11,6 +11,7 @@ import { PostedJobsPage } from "./pages/posted-jobs/posted-jobs";
 // Thorin added
 import { ThemeProvider } from 'styled-components'
 import { ThorinGlobalStyles, lightTheme } from '@ensdomains/thorin'
+import { JobViewPage } from "./pages/job-view/job-view";
 
 export const toastCss = {
   style: {
@@ -31,6 +32,7 @@ function App() {
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/jobs" element={<JobsListPage />} />
             <Route path="/posted" element={<PostedJobsPage />} />
+            <Route path="/job/:id" element={<JobViewPage />} />
           </Routes>
         </Router>
       </AuthProvider>

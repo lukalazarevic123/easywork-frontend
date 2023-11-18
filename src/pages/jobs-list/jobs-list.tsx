@@ -2,8 +2,11 @@ import { useEffect, useState } from "react";
 import "./jobs-list.css";
 import moment from "moment";
 import ethicon from "../../assets/eth.png";
+import { useNavigate } from "react-router-dom";
 
 export const JobsListPage = () => {
+  const navigate = useNavigate();
+
   const [typeFilter, setTypeFilter] = useState("");
   const [ratingFilter, setRatingFilter] = useState("");
   const [searchTitle, setSearchTitle] = useState("");
@@ -13,7 +16,7 @@ export const JobsListPage = () => {
     const fetchGigs = async () => {
       const getGigs = await fetch(`${import.meta.env.VITE_BACKEND_URL}/job/all-jobs`);
       const allGigs = await getGigs.json();
-
+      console.log(allGigs);
       setGigs([...allGigs]);
     }
 
@@ -85,7 +88,7 @@ export const JobsListPage = () => {
             .filter((gig) => filterByType(gig))
             .filter((gig) => filterByTitle(gig))
             .map((gig, idx) => (
-              <div className="job-card" key={idx}>
+              <div className="job-card" key={idx} onClick={() => navigate(`/job/${gig.id}`)} >
                 <div className="card-top">
                   <div className="job-title">{gig.title}</div>
                   <div className="apply-btn">Apply</div>
