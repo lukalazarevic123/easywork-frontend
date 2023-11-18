@@ -7,7 +7,7 @@
 
     height: 4.5rem;
 
-    background-color: black;
+    background-color: #00A9FF;
 
     justify-content: space-between;
 }
@@ -41,7 +41,7 @@
 
 .link-item {
     font-family: 'Roboto', sans-serif;
-    color: lightgrey;
+    color: whitesmoke;
     font-weight: 600;
     cursor: pointer;
     padding: 10px;
@@ -50,7 +50,7 @@
 }
 
 .link-item:hover {
-    color: black;
+    color: #00A9FF;
     transition: color 400ms ease;
     transition: background-color 400ms ease;
     background-color: rgb(255, 255, 255, 0.5);

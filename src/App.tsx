@@ -8,6 +8,9 @@ import { LoginPage } from "./pages/login/login";
 import { RegisterPage } from "./pages/register/register";
 import { JobsListPage } from "./pages/jobs-list/jobs-list";
 import { PostedJobsPage } from "./pages/posted-jobs/posted-jobs";
+// Thorin added
+import { ThemeProvider } from 'styled-components'
+import { ThorinGlobalStyles, lightTheme } from '@ensdomains/thorin'
 
 export const toastCss = {
   style: {
