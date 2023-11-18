@@ -13,7 +13,7 @@ export const RegisterPage = () => {
   const [password, setPassword] = useState("");
   const [type, setType] = useState<string>("FREELANCER")
 
-  const connectWallet = async () => {
+  const registerWithWallet = async () => {
     if(password === "") {
         toast.error("You must provide a password!", toastCss);
         return;
@@ -26,29 +26,32 @@ export const RegisterPage = () => {
       return;
     }
 
+    const res = await authContext.registerWeb3(resp.toString(), password, type);
+
+    if(!res){
+        toast.error("Something went wrong registering with wallet", toastCss)
+        return;
+    }
+
     toast.success("Success", toastCss);
     navigate("/jobs")
   }
 
+//   web2 register
   const onSubmit = async () => {
-    const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/register`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        password,
-        type,
-        chainAddress: authContext.wallet
-      })
-    })
+    if(email === "" || password === ""){
+      toast.error("Can't leave field empty", toastCss);
+      return;
+    }
+    const res = await authContext.registerWeb2(email, password, type);
 
-    if(res.status === 400){
-      toast.error("Wrong credentials", toastCss);
+    if(!res){
+      toast.error("Something went wrong", toastCss);
       return;
     }
 
-    
+    toast.success("Success", toastCss);
+    navigate("/jobs");
   }
 
   return (
@@ -102,7 +105,7 @@ export const RegisterPage = () => {
         </div>
 
         <div className="d-flex">
-          <div className="wallet-login" onClick={() => connectWallet()}>Connect Wallet</div>
+          <div className="wallet-login" onClick={() => registerWithWallet()}>Connect Wallet</div>
         </div>
       </form>
     </div>

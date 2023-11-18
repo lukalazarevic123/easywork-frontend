@@ -12,37 +12,46 @@ export const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const connectWallet = async () => {
-    const resp = await authContext.connectWallet();
-
-    if(!resp){
-      toast.error("Something went wrong connecting to Metamask", toastCss)
+  const loginWithWallet = async () => {
+    if (password === "") {
+      toast.error("You must provide a password!", toastCss);
       return;
     }
 
-    toast.success("Success", toastCss);
-    navigate("/jobs")
-  }
+    const resp = await authContext.connectWallet();
 
-  const onSubmit = async () => {
-    const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/login`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        email,
-        password
-      })
-    })
+    if (!resp) {
+      toast.error("Something went wrong connecting to Metamask", toastCss);
+      return;
+    }
 
-    if(res.status === 400){
+    const res = await authContext.loginWeb3(resp.toString(), password);
+
+    if (!res) {
       toast.error("Wrong credentials", toastCss);
       return;
     }
 
-    
-  }
+    toast.success("Success", toastCss);
+    navigate("/jobs");
+  };
+
+  //   web2 login
+  const onSubmit = async () => {
+    if (email === "" || password === "") {
+      toast.error("Can't leave field empty", toastCss);
+      return;
+    }
+    const res = await authContext.loginWeb2(email, password);
+
+    if (!res) {
+      toast.error("Wrong credentials", toastCss);
+      return;
+    }
+
+    toast.success("Success", toastCss);
+    navigate("/jobs");
+  };
 
   return (
     <div className="login-wrapper">
@@ -85,7 +94,9 @@ export const LoginPage = () => {
         </div>
 
         <div className="d-flex">
-          <div className="wallet-login" onClick={() => connectWallet()}>Connect Wallet</div>
+          <div className="wallet-login" onClick={() => loginWithWallet()}>
+            Connect Wallet
+          </div>
         </div>
       </form>
     </div>
