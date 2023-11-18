@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import { ThemeProvider } from 'styled-components'
 import { ThorinGlobalStyles, lightTheme } from '@ensdomains/thorin'
 import { Banner } from '@ensdomains/thorin'
-import logo from './logo.svg';
+import { LogoSVG } from '../../components/logosvg/logosvg'
+import { FlameSVG } from '@ensdomains/thorin' 
 
 
 export const HomePage = () => {
@@ -10,9 +11,9 @@ export const HomePage = () => {
     <>
       <ThemeProvider theme={lightTheme}>
       <ThorinGlobalStyles />
-        <Banner alert="info" title="Heading">
-        Empowering Work Relationships: Ethereum Attestation Services for Verified Job Accomplishments
-        </Banner>
+      <Banner actionIcon={<FlameSVG />} iconType="normal" title="Empowering Work Relationships">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      </Banner>
       </ThemeProvider>
     </>
   );
