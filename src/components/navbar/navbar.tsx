@@ -65,7 +65,7 @@ export const Navbar = () => {
       <div>
         <img
           className="user-avatar"
-          src={authContext.user.avatar ?? defAvatar}
+          src={defAvatar}
         />
       </div>
     );
@@ -102,6 +102,9 @@ export const Navbar = () => {
               {link.name}
             </div>
           ))}
+          <div className="link-item">
+            {authContext.type === "FREELANCER" ? "Applied jobs" : "Posted jobs"}
+          </div>
         </div>
       </div>
 
