@@ -16,7 +16,7 @@ export const JobsListPage = () => {
     const fetchGigs = async () => {
       const getGigs = await fetch(`${import.meta.env.VITE_BACKEND_URL}/job/all-jobs`);
       const allGigs = await getGigs.json();
-      console.log(allGigs);
+      
       setGigs([...allGigs]);
     }
 

@@ -1,0 +1,69 @@
+.job-view-wrap {
+    margin: auto;
+    margin-top: 7rem;
+    width: 40%;
+
+    border: 1px solid lightgrey;
+
+    padding: 30px;
+    border-radius: 9px;
+}
+
+.job-view-title {
+    font-weight: 700;
+    font-size: 35px;
+}
+
+.job-view-tag {
+    padding: 15px;
+
+    background-color: beige;
+    border-radius: 9px;
+    font-family: 'Roboto', sans-serif;
+    margin-left: 10px;
+    height: 2rem;
+
+    font-weight: 600;
+}
+
+.job-view-description {
+    margin-top: 50px;
+    padding: 30px;
+    border: 1px solid lightgrey;
+    border-radius: 9px;
+
+    font-family: 'Roboto', sans-serif;
+    line-height: 0.8cm;
+
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.comm-title {
+    font-family: 'Roboto', sans-serif;
+    margin-top: 30px;
+}
+
+.comment-content {
+    margin-top: 15px;
+}
+
+.comment-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.comment-title {
+    font-weight: 700;
+
+    font-family: 'Roboto', sans-serif;
+}
+
+.comment-card {
+    background-color: lightblue;
+    padding: 20px;
+
+    margin: 10px;
+    border-radius: 10px;
+}
