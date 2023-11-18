@@ -1,30 +1,98 @@
 .posted-jobs-wrap {
-    margin: auto;
+  margin: auto;
 
-    width: 55vw;
+  width: 55vw;
 
-    margin-top: 5rem;
+  margin-top: 5rem;
 }
 
 .posted-jobs-top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .posted-top-title {
-    font-family: 'Roboto', sans-serif;
-    font-weight: 800;
+  font-family: "Roboto", sans-serif;
+  font-weight: 800;
 }
 
 .new-btn-posted {
-    display: flex;
-    align-items: center;
-    text-align: center;
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: white;
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+
+  background-color: green;
+  padding: 10px;
+
+  border-radius: 15px;
+
+  cursor: pointer;
+  width: 5rem;
+
+  text-align: center;
+}
+
+.inactive-btn {
+  color: white;
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+
+  background-color: red;
+  padding: 10px;
+
+  border-radius: 15px;
+
+  cursor: pointer;
+  width: 5rem;
+
+  text-align: center;
+}
+
+.add-job-component {
+  padding: 20px;
+  border-radius: 9px;
+  border: 1px solid lightgrey;
+}
+
+.add-job-title {
+  font-size: 24px;
+  font-weight: 600;
+  font-family: "Roboto", sans-serif;
+}
+
+.add-job-input {
+  border: 1px solid lightgrey;
+  padding: 10px;
+  border-radius: 12px;
+
+  height: 2rem;
+
+  width: 25vw;
+}
+
+.add-job-textarea {
+    border: 1px solid lightgrey;
+    padding: 10px;
+    border-radius: 12px;
+
+    height: 8rem;
+  
+    width: 45vw;
+}
+
+.submit-job-btn {
+    margin-top: 20px;
 
     color: white;
     font-family: 'Roboto', sans-serif;
-    font-size: 18px;
+    font-size: 22px;
     font-weight: 800;
 
     background-color: green;
@@ -33,24 +101,8 @@
     border-radius: 15px;
 
     cursor: pointer;
-    width: 5rem;
+    width: 10rem;
 
     text-align: center;
-}
-
-.inactive-btn {
-    color: white;
-    font-family: 'Roboto', sans-serif;
-    font-size: 18px;
-    font-weight: 800;
-
-    background-color: red;
-    padding: 10px;
-
-    border-radius: 15px;
-
-    cursor: pointer;
-    width: 5rem;
-
-    text-align: center;
+    margin-bottom: 20px;
 }

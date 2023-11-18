@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import "./posted-jobs.css";
 import { AuthContext } from "../../contexts/AuthProvider";
 import { useNavigate } from "react-router-dom";
@@ -8,6 +8,15 @@ import moment from "moment";
 export const PostedJobsPage = () => {
   const authContext = useContext(AuthContext);
   const navigate = useNavigate();
+
+  const [showAddJob, setShowAddJob] = useState(false);
+  const [addJobTitle, setAddJobTitle] = useState("");
+  const [addJobDesc, setAddJobDesc] = useState("");
+  const [addJobCat, setAddJobCat] = useState("");
+
+  const toggleShowAddJob = () => {
+    setShowAddJob((prevValue) => !prevValue);
+  };
 
   return (
     <div className="posted-jobs-wrap">
@@ -20,12 +29,48 @@ export const PostedJobsPage = () => {
           )}
         </h1>
         {authContext.type === "CLIENT" && (
-          <div className="new-btn-posted">
+          <div className="new-btn-posted" onClick={() => toggleShowAddJob()}>
             <span className="material-symbols-outlined">add</span>
             <div>Add</div>
           </div>
         )}
       </div>
+      {showAddJob && (
+        <div className="add-job-component">
+          <div className="add-job-title">Post a new job</div>
+          <div className="add-job-form">
+            <div className="add-job-group">
+              <div className="group-label">Job title</div>
+              <input
+                placeholder="Smart contract audit"
+                className="add-job-input"
+                onChange={(e) => setAddJobTitle(e.target.value)}
+              />
+            </div>
+            <div className="add-job-group">
+              <div className="group-label">Job title</div>
+              <select
+                className="login-input type-select"
+                onChange={(e) => setAddJobCat(e.target.value)}
+              >
+                <option value={"Blockchain"}>Blockchain</option>
+                <option value={"Machine learning"}>Machine learning</option>
+                <option value={"Cybersecurity"}>Cybersecurity</option>
+              </select>
+            </div>
+
+            <div className="add-job-group">
+              <div className="group-label">Job title</div>
+              <textarea
+                className="add-job-textarea"
+                onChange={(e) => setAddJobTitle(e.target.value)}
+              />
+            </div>
+          </div>
+
+          <div className="submit-job-btn">Submit</div>
+        </div>
+      )}
       <div className="posted-jobs-list">
         {gigs.map((gig, idx) => (
           <div className="job-card" key={idx}>
