@@ -1,10 +1,13 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import "./jobs-list.css";
 import moment from "moment";
 import ethicon from "../../assets/eth.png";
 import { useNavigate } from "react-router-dom";
+import { Spinner } from "@ensdomains/thorin";
+import { AuthContext } from "../../contexts/AuthProvider";
 
 export const JobsListPage = () => {
+  const authContext = useContext(AuthContext);
   const navigate = useNavigate();
 
   const [typeFilter, setTypeFilter] = useState("");
@@ -12,16 +15,20 @@ export const JobsListPage = () => {
   const [searchTitle, setSearchTitle] = useState("");
   const [gigs, setGigs] = useState<any[]>([]);
 
+  const [loading, setLoading] = useState<boolean>(false);
+
   useEffect(() => {
     const fetchGigs = async () => {
-      const getGigs = await fetch(`${import.meta.env.VITE_BACKEND_URL}/job/all-jobs`);
+      const getGigs = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/job/all-jobs`
+      );
       const allGigs = await getGigs.json();
-      
+
       setGigs([...allGigs]);
-    }
+    };
 
     fetchGigs();
-  }, [])
+  }, []);
 
   const filterByType = (gig: any) => {
     if (typeFilter === "" || typeFilter.includes(gig.category)) {
@@ -32,12 +39,35 @@ export const JobsListPage = () => {
   };
 
   const filterByTitle = (gig: any) => {
-    if(searchTitle === "" || gig.title.includes(searchTitle)){
-        return true;
+    if (searchTitle === "" || gig.title.includes(searchTitle)) {
+      return true;
     }
 
     return false;
-  }
+  };
+
+  const applyToJob = async (id: string) => {
+    setLoading(true);
+
+    const wallet = await authContext.connectWallet();
+
+    const apply = await fetch(
+      `${import.meta.env.VITE_BACKEND_URL}/job/apply/${id}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          freelancer: wallet,
+        }),
+      }
+    );
+
+    const applyJson = await apply.json();
+
+    setLoading(false);
+  };
 
   return (
     <div className="jobs-list-wrapper">
@@ -88,10 +118,17 @@ export const JobsListPage = () => {
             .filter((gig) => filterByType(gig))
             .filter((gig) => filterByTitle(gig))
             .map((gig, idx) => (
-              <div className="job-card" key={idx} onClick={() => navigate(`/job/${gig.id}`)} >
+              <div className="job-card" key={idx}>
                 <div className="card-top">
-                  <div className="job-title">{gig.title}</div>
-                  <div className="apply-btn">Apply</div>
+                  <div
+                    className="job-title"
+                    onClick={() => navigate(`/job/${gig.id}`)}
+                  >
+                    {gig.title}
+                  </div>
+                  <div className="apply-btn" onClick={() => applyToJob(gig.id)}>
+                    Apply
+                  </div>
                 </div>
                 <div className="job-description">{gig.description}</div>
                 <div className="tags-list">
@@ -107,7 +144,9 @@ export const JobsListPage = () => {
                       <div style={{ marginLeft: "10px" }}>Funds staked</div>
                     </div>
                   </div>
-                  <div className="job-tag">{gig.price} <img src={ethicon} height="20px" width="20px" />  </div>
+                  <div className="job-tag">
+                    {gig.price} <img src={ethicon} height="20px" width="20px" />{" "}
+                  </div>
                 </div>
               </div>
             ))}
