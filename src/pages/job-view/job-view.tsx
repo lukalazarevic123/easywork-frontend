@@ -73,8 +73,6 @@ export const JobViewPage = () => {
     getJobs();
   }, []);
 
-
-
   const openEas = (id: string) => {
     window.location.href = `https://sepolia.easscan.org/attestation/view/${id}`;
   };
@@ -110,7 +108,21 @@ export const JobViewPage = () => {
 
       <div className="assignee-wrap">
         <h1 className="comm-title">Freelancer</h1>
-        <div className="freelancer">{freelancer.description}</div>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <div className="freelancer">{freelancer.description}</div>
+          <div className="eas-ic" onClick={() => openEas(freelancer.id)}>
+            <img
+              className="eas-ico-down"
+              src="https://pbs.twimg.com/profile_images/1593335725751083008/0XMyDyLq_400x400.png"
+            />
+          </div>
+        </div>
       </div>
 
       <div className="comments">
