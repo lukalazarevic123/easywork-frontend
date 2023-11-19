@@ -66,3 +66,12 @@
 .discover {
     margin-bottom: 2%;
 }
+
+.titlecard {
+    display:flex;
+    align-items: center;
+}
+
+.titlecard > *{
+    margin-right: 3%;
+}

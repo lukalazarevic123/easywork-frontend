@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { ThorinGlobalStyles, lightTheme, Tag, CurrencyToggle } from '@ensdomains/thorin';
-import { Banner, EnvelopeSVG, Heading, Card, Typography } from '@ensdomains/thorin';
+import { Banner, EnvelopeSVG, Heading, Card, Typography, MagnifyingGlassSVG, EthSVG } from '@ensdomains/thorin';
 import './home-page.css';
 
 export const HomePage = () => {
@@ -31,7 +31,7 @@ export const HomePage = () => {
           <Banner alert='info' className='bane' icon={<EnvelopeSVG />} title="Not an ordinary job marketplace">
             EasyWork is a trusted ecosystem where individuals can confidently attest to their work experiences and payments, fostering a transparent and fair environment for freelancers and job providers alike.
           </Banner>
-          <Heading level="2" align='center' className="discover">Discover Jobs</Heading>
+          <Heading level="2" align='center' className="discover">Discover Jobs <MagnifyingGlassSVG /></Heading>
           <CurrencyToggle onClick={handleToggle} />
         </div>
         <div className="cards">
@@ -39,7 +39,7 @@ export const HomePage = () => {
           <Card divider title="Blockchain Job Opportunity!" variant="desktop">
             <Card.Divider />
             <Typography>
-              Senior Solidity Software Engineer
+            <div className='titlecard'> <EthSVG /> Senior Solidity Software Engineer</div>
             </Typography>
             <Card.Divider />
             <Typography>
@@ -57,7 +57,7 @@ export const HomePage = () => {
           <Card divider title="Blockchain Job Opportunity!" variant="desktop">
             <Card.Divider />
             <Typography>
-              Senior Solidity Software Engineer
+            <div className='titlecard'> <EthSVG /> Senior Solidity Software Engineer</div>
             </Typography>
             <Card.Divider />
             <Typography>
@@ -75,7 +75,7 @@ export const HomePage = () => {
           <Card divider title="Blockchain Job Opportunity!" variant="desktop" className="singlecard">
             <Card.Divider />
             <Typography>
-              Senior Solidity Software Engineer
+           <div className='titlecard'> <EthSVG /> Senior Solidity Software Engineer</div>
             </Typography>
             <Card.Divider />
             <Typography>
