@@ -49,6 +49,7 @@ export const JobViewPage = () => {
 
   const [job, setJob] = useState<any>({});
   const [freelancer, setFreelancer] = useState<any>({});
+  const [showFinish, setShowFinish] = useState<boolean>(false);
 
   useEffect(() => {
     const getJobs = async () => {
@@ -66,8 +67,23 @@ export const JobViewPage = () => {
         `${import.meta.env.VITE_BACKEND_URL}/job/freelancer/${id}`
       );
       const assignee = await fetchAssignee.json();
+
+      if (assignee.id) {
+        const checkStatusOnChain = async () => {
+          const fetchStatus = await fetch(
+            `${import.meta.env.VITE_BACKEND_URL}/job/status/${id}`
+          );
+          const status = await fetchStatus.json();
+
+          if (status.status === 2) {
+            setShowFinish(true);
+            return;
+          }
+        };
+
+        checkStatusOnChain();
+      }
       setFreelancer(assignee);
-      console.log(assignee);
     };
     getAssigneeAttest();
     getJobs();
@@ -75,6 +91,29 @@ export const JobViewPage = () => {
 
   const openEas = (id: string) => {
     window.location.href = `https://sepolia.easscan.org/attestation/view/${id}`;
+  };
+
+  const getRefUID = () => {
+    const tokens = freelancer.description.split(" ");
+
+    return tokens[tokens.length - 1];
+  };
+
+  const finishJob = async () => {
+    const res = await fetch(
+      `${import.meta.env.VITE_BACKEND_URL}/job/finish/${id}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          refUID: getRefUID(),
+        }),
+      }
+    );
+
+    console.log(res);
   };
 
   return (
@@ -107,7 +146,22 @@ export const JobViewPage = () => {
       <div className="job-view-description">{job.description}</div>
 
       <div className="assignee-wrap">
-        <h1 className="comm-title">Freelancer</h1>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
+          <h1 className="comm-title">Freelancer</h1>
+          <div
+            className="finish-button"
+            onClick={() => finishJob()}
+            hidden={showFinish}
+          >
+            Finish
+          </div>
+        </div>
         <div
           style={{
             display: "flex",

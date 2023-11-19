@@ -109,3 +109,12 @@
 
     text-wrap: pretty;
 }
+
+.finish-button {
+    background-color: #00A9FF;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+
+    font-family: 'Roboto', sans-serif;
+}

@@ -16,7 +16,7 @@ const links = [
   {
     name: "Find work",
     href: "/jobs",
-    role: "FREELANCER"
+    role: "ALL"
   },
   {
     name: "Posted jobs",
